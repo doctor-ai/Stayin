@@ -13,14 +13,11 @@
   },
   "scripts": {
     "start:portal": "cd ./portal && npm start && cd ..",
-    "install": "cd ./portal && npm install && cd .. && cd ./backend && npm install && cd ..",
+    "install": "cd ./portal && npm install && cd .. && cd ./backend && npm install && npm install --only=dev && cd ..",
     "start:backend": "cd ./backend && npm start && cd ..",
     "start": "npm run start:backend",
     "build:portal": "cd portal && npm run build && cd ..",
     "build": "npm run build:portal"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
   },
   "author": "",
   "license": "ISC",
