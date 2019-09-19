@@ -31,7 +31,8 @@ const server = (async () => {
     if (process.env.NODE_ENV === 'production') {
       app.use(portalServe);
     }
-    app.listen(config.get('port'));
+    const PORT = process.env.PORT || Config.get('port');
+    app.listen(PORT);
     debug('Server is running...');
   } catch (err) {
     error('Server startup failed' + err.message);
