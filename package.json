@@ -6,6 +6,11 @@
     "backend/node_modules",
     "portal/node_modules"
   ],
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x",
+    "yarn": "1.x"
+  },
   "scripts": {
     "start:portal": "cd ./portal && npm start && cd ..",
     "install": "cd ./portal && npm install && cd .. && cd ./backend && npm install && cd ..",
@@ -13,6 +18,9 @@
     "start": "npm run start:backend",
     "build:portal": "cd portal && npm run build && cd ..",
     "build": "npm run build:portal"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   },
   "author": "",
   "license": "ISC",
