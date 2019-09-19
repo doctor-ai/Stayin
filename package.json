@@ -1,0 +1,13 @@
+{
+  "name": "stayin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:portal": "cd ./portal && npm start && cd ..",
+    "install": "cd ./portal && npm install && cd .. && cd ./backend && npm install && cd ..",
+    "start:backend": "cd ./backend && npm start && cd .."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
