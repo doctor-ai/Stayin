@@ -19,47 +19,46 @@ class Layout extends Component {
         <Header title="Hotel Login" />
         <CssBaseline />
         <div className={classes.container} >
-            <img src="/images/boy.svg" className={classes.img} />
-          <Container maxWidth="sm">
-          {/* You can change size xs */}
-                <TextField
-                  name="hotelname"
-                  type="Email"
-                  className={classes.textField}
-                  variant="outlined"
-                  placeholder="Enter Your Email"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start" style={{color:"#1e90ff"}}>
-                        <AccountCircle />
-                      </InputAdornment>
-                    ),
-                 }}
-                />
-                <TextField
-                  name="hotelname"
-                  id="outlined-bare"
-                  type="Password"
-                  className={classes.textField}
-                  variant="outlined"
-                  placeholder="Enter Your Passoword"
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start" style={{color:"#1e90ff"}}>
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                 }}
-                />
-                <Button
-                  variant="contained"
-                  fullWidth
-                  color="primary"
-                  className={classes.button}
-                >
-                  Login
+          <img src="/images/boy.svg" alt="boy" height='150' width='150' />
+          <Container maxWidth="xs">
+            <TextField
+              name="hotelname"
+              type="Email"
+              className={classes.textField}
+              variant="outlined"
+              placeholder="Enter Your Email"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start" style={{ color: "#1e90ff" }}>
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              name="hotelname"
+              id="outlined-bare"
+              type="Password"
+              className={classes.textField}
+              variant="outlined"
+              placeholder="Enter Your Passoword"
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start" style={{ color: "#1e90ff" }}>
+                    <LockIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              variant="contained"
+              fullWidth
+              color="primary"
+              className={classes.button}
+            >
+              Login
                 </Button>
           </Container>
         </div>
