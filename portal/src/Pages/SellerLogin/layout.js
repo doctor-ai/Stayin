@@ -5,25 +5,25 @@ import LockIcon from '@material-ui/icons/Lock';
 import {
   withStyles,
   Container,
-  CssBaseline,
   TextField,
   Button
 } from "@material-ui/core";
+
 import style from "./style";
 import { Header } from "Components";
+
 class Layout extends Component {
   render() {
     const { classes } = this.props;
     return (
       <div>
         <Header title="Hotel Login" />
-        <CssBaseline />
         <div className={classes.container} >
           <img src="/images/boy.svg" alt="boy" height='150' width='150' />
           <Container maxWidth="xs">
             <TextField
               name="hotelname"
-              type="Email"
+              type="email"
               className={classes.textField}
               variant="outlined"
               placeholder="Enter Your Email"
@@ -39,10 +39,10 @@ class Layout extends Component {
             <TextField
               name="hotelname"
               id="outlined-bare"
-              type="Password"
+              type="password"
               className={classes.textField}
               variant="outlined"
-              placeholder="Enter Your Passoword"
+              placeholder="Enter Your Password"
               fullWidth
               InputProps={{
                 startAdornment: (
