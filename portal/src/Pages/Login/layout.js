@@ -7,7 +7,7 @@ import {
   Grid
 } from '@material-ui/core';
 import style from './style';
-import { Header } from 'Components';
+import { Header, Footer } from 'Components';
 
 class Layout extends Component {
   render() {
@@ -57,6 +57,7 @@ class Layout extends Component {
             </form>
           </div>
         </Container>
+        <Footer />
       </div>
     );
   }
