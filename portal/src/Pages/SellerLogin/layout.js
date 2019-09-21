@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import style from "./style";
 import { Header } from "Components";
+import { throwStatement } from "@babel/types";
 class Layout extends Component {
   render() {
     const { classes } = this.props;
@@ -20,8 +21,8 @@ class Layout extends Component {
         <CssBaseline />
         <div className={classes.container} >
             <img src="/images/boy.svg" className={classes.img} />
-          <Container maxWidth="sm">
-          {/* You can change size xs */}
+          <Container maxWidth="xs">
+
                 <TextField
                   name="hotelname"
                   type="Email"
@@ -47,7 +48,7 @@ class Layout extends Component {
                   fullWidth
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start" style={{color:"#1e90ff"}}>
+                      <InputAdornment position="start" className={classes.icon}>
                         <LockIcon />
                       </InputAdornment>
                     ),

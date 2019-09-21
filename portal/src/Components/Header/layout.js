@@ -9,7 +9,7 @@ class Layout extends Component {
     return (
       <AppBar position='static'>
         <Toolbar className={classes.navigationBar}>
-          <Typography variant='h6'>{title || 'MERN APP'}</Typography>
+          <Typography variant='h6' color="primary">{title || 'STAY IN'}</Typography>
         </Toolbar>
       </AppBar>
     );

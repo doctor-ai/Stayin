@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { withStyles,Container,Grid,TextField,} from '@material-ui/core';
-import style from './style';
 import { Header } from 'Components';
+import style from './style';
 class Layout extends Component {
   render() {
     const { classes } = this.props;
     return (
       <div>
         <Header title="Hotel Registration"/>
-        <Container maxWidth="md" >
+        <Container maxWidth="sm" >
           <Grid container spacing={3} className={classes.container} >
           <Grid item xs={12} md={12} lg={12} >
           <TextField
@@ -17,6 +17,7 @@ class Layout extends Component {
                   className={classes.textField}
                   variant="outlined"
                   label="Hotel Name"
+                  required
                   fullWidth
               />
         </Grid>
@@ -42,7 +43,7 @@ class Layout extends Component {
               fullWidth
            />
             </Grid>
-            {/* Second Row */}
+
             <Grid item xs={12} md={6} lg={6} >
             <TextField
                  name="city"

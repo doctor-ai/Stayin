@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 
-//Admin Seller Components
 import SellerLogin from  'Pages/SellerLogin';
 import SellerSignup from  'Pages/SellerSignup';
 class Root extends React.Component {
