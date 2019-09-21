@@ -1,11 +1,4 @@
 const style = theme => ({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'column'
-  },
-
   mainFeaturedPost: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
@@ -29,7 +22,7 @@ const style = theme => ({
     position: 'relative',
     padding: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(20),
+      padding: theme.spacing(20, 10),
       paddingRight: 0
     }
   },
