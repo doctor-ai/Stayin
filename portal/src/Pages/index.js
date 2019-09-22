@@ -5,10 +5,11 @@ import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import Singup from 'Pages/Signup';
 import SellerLogin from 'Pages/SellerLogin';
-import HotelRegistration from 'Pages/HotelRegistration';
-
-import SellerLogin from 'Pages/SellerLogin';
 import SellerSignup from 'Pages/SellerSignup';
+import HotelRegistration from 'Pages/HotelRegistration';
+import HotelRooms from 'Pages/HotelRoom';
+import Admin from 'Pages/Admin';
+
 class Root extends React.Component {
   render() {
     return (
@@ -18,7 +19,10 @@ class Root extends React.Component {
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Singup} />
           <Route exact path='/admin/login' component={SellerLogin} />
+          <Route exact path='/admin/signup' component={SellerSignup} />
           <Route exact path='/admin/addhotel' component={HotelRegistration} />
+          <Route exact path='/room' component={HotelRooms} />
+          <Route exact path="/admin" component={Admin} />
         </Switch>
       </Router>
     );

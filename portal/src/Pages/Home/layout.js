@@ -80,13 +80,13 @@ class Layout extends Component {
                     title="Hotel"
                   />
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography  variant="h5" >
                       Hotel Name
                     </Typography>
-                    <Typography style={{ paddingTop: 10 }}>
-                      ⭐️⭐️️⭐️
+                    <Typography gutterBottom>
+                      Gandhinagar
                     </Typography>
-                    <Typography>
+                    <Typography gutterBottom>
                       This is a media card. You can use this section to describe
                       the content.
                     </Typography>
@@ -97,7 +97,7 @@ class Layout extends Component {
                       color="secondary"
                       className={classes.button}
                     >
-                      BOOK NOW{" "}
+                      BOOK NOW
                     </Button>
                   </CardActions>
                 </Card>
