@@ -53,15 +53,21 @@ const login = async (req, res, next) => {
 };
 
 const signup = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { firstname, lastname, username, password } = req.body;
   const message = [];
+  if (!firstname) {
+    message.push('firstname is required');
+  }
+  if (!lastname) {
+    message.push('lastname is required');
+  }
   if (!username) {
     message.push('Username is required');
   }
   if (!password) {
     message.push('Password is required');
   }
-  if (!username || !password) {
+  if (!firstname || !username || !lastname || !password) {
     res.json({
       code: 401,
       data: {
@@ -90,6 +96,8 @@ const signup = async (req, res, next) => {
   };
   const token = jwt.sign(JSON.stringify(authInfo), config.get('jwt').secret);
   await new User({
+    firstname,
+    lastname,
     username,
     password
   }).save();

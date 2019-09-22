@@ -1,14 +1,13 @@
+const background =
+  'https://www.travelplusstyle.com/wp-content/uploads/2016/01/sonevajani-1880.jpg';
+
 const style = theme => ({
-  mainFeaturedPost: {
+  mainheader: {
+    height: '94vh',
     position: 'relative',
-    backgroundColor: theme.palette.grey[800],
-    color: theme.palette.common.white,
-    marginBottom: theme.spacing(4),
-    backgroundImage:
-      'url(https://www.travelplusstyle.com/wp-content/uploads/2016/01/sonevajani-1880.jpg)',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center'
+    background: `url(${background})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   },
   overlay: {
     position: 'absolute',
@@ -16,18 +15,48 @@ const style = theme => ({
     bottom: 0,
     right: 0,
     left: 0,
+    height: '100%',
     backgroundColor: 'rgba(0,0,0,.3)'
   },
-  mainFeaturedPostContent: {
-    position: 'relative',
-    padding: theme.spacing(3),
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(20, 10),
-      paddingRight: 0
-    }
+  headerContent: {
+    display: 'flex',
+    alignItems: 'Center',
+    justifyContent: 'Center',
+    color: 'white',
+    height: '95vh',
+    flexDirection: 'column'
   },
   button: {
-    margin: theme.spacing(1)
+    marginTop: '10px',
+    textAlign: 'center',
+    marginLeft: 9,
+    padding: '10px 30px'
+  },
+  typo: {
+    padding: 15,
+    color: 'white',
+    zIndex: 9,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    fontFamily: 'Roboto',
+    fontSize: '3em',
+    fontWeight: 500,
+    fontStyle: 'italic'
+  },
+  Search: {
+    height: 125,
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.1)'
+  },
+  textField: {
+    display: 'flex',
+    position: 'relative',
+    top: theme.spacing(4),
+    border: 'none',
+    borderRadius: '1%',
+
+    backgroundColor: 'white',
+    alignItems: 'center'
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -45,5 +74,4 @@ const style = theme => ({
     flexGrow: 1
   }
 });
-
 export default style;

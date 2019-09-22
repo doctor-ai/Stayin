@@ -73,7 +73,8 @@ class Layout extends Component {
                 onClick={this.onClickSignup}
                 fullWidth
                 variant='contained'
-                color='primary'
+                color='secondary'
+                href='/'
                 className={classes.submit}
               >
                 Signup

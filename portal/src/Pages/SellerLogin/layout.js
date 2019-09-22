@@ -56,7 +56,7 @@ class Layout extends Component {
             <Button
               variant='contained'
               fullWidth
-              color='primary'
+              color='secondary'
               className={classes.button}
             >
               Login

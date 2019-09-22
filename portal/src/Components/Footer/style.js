@@ -1,8 +1,11 @@
 const style = theme => ({
-  footer: {
-    backgroundColor: theme.palette.primary.main,
-    margin: theme.spacing(8, 0, 0, 0),
-    padding: theme.spacing(3, 10, 3, 10)
+  footerBar: {
+    marginTop: theme.spacing(10)
+  },
+  navigationBar: {
+    backgroundColor: theme.palette.secondary.main,
+    marginTop: theme.spacing(0),
+    padding: theme.spacing(1, 0)
   }
 });
 export default style;

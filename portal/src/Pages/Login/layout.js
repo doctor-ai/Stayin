@@ -48,8 +48,9 @@ class Layout extends Component {
 
               <Button
                 fullWidth
+                href='/'
                 variant='contained'
-                color='primary'
+                color='secondary'
                 className={classes.submit}
               >
                 Login
