@@ -90,14 +90,7 @@ const hotelragistation = async (req, res, next) => {
     });
     return;
   }
-
-  const expiredOn = Date.now() + 1000 * 60 * 60;
-  const authInfo = {
-    expiredOn,
-    hotelname
-  };
-  const token = jwt.sign(JSON.stringify(authInfo), config.get('jwt').secret);
-  await new Hotel({
+  const hotel = await new Hotel({
     hotelname,
     address,
     city,
@@ -115,9 +108,7 @@ const hotelragistation = async (req, res, next) => {
   res.json({
     code: 200,
     data: {
-      expiredOn,
-      token,
-      hotelname
+      hotel
     },
     success: true
   });
