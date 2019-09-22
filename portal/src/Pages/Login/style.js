@@ -5,7 +5,6 @@ const style = theme => ({
     flex: 1,
     flexDirection: 'column'
   },
-
   inputContainer: {
     display: 'flex',
     alignItems: 'center',
