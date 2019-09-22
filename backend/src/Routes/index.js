@@ -5,6 +5,8 @@ const { AuthController, HotelController } = require('Controllers');
 // Auth Routes
 router.post('/login', AuthController.login);
 router.post('/signup', AuthController.signup);
-router.post('/hotelragistration', HotelController.hotelragistation);
+
+// Hotel Controllers
+router.post('/addhotel', HotelController.hotelragistation);
 
 module.exports = router;
