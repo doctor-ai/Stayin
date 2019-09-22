@@ -7,6 +7,8 @@ import Singup from 'Pages/Signup';
 import SellerLogin from 'Pages/SellerLogin';
 import HotelRegistration from 'Pages/HotelRegistration';
 
+import SellerLogin from 'Pages/SellerLogin';
+import SellerSignup from 'Pages/SellerSignup';
 class Root extends React.Component {
   render() {
     return (

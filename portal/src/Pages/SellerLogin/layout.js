@@ -8,9 +8,9 @@ import {
   CssBaseline,
   TextField,
   Button
-} from '@material-ui/core';
-import style from './style';
-import { Header } from 'Components';
+} from "@material-ui/core";
+import style from "./style";
+import { Header } from "Components";
 class Layout extends Component {
   render() {
     const { classes } = this.props;
@@ -18,49 +18,49 @@ class Layout extends Component {
       <div>
         <Header title='Hotel Login' />
         <CssBaseline />
-        <div className={classes.container}>
-          <img src='/images/boy.svg' className={classes.img} alt='svgicon' />
-          <Container maxWidth='sm'>
-            {/* You can change size xs */}
+        <div className={classes.container} >
+          <img src="/images/boy.svg" className={classes.img} />
+          <Container maxWidth="xs">
+
             <TextField
-              name='hotelname'
-              type='Email'
+              name="hotelname"
+              type="Email"
               className={classes.textField}
-              variant='outlined'
-              placeholder='Enter Your Email'
+              variant="outlined"
+              placeholder="Enter Your Email"
               fullWidth
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start' style={{ color: '#1e90ff' }}>
+                  <InputAdornment position="start" style={{ color: "#1e90ff" }}>
                     <AccountCircle />
                   </InputAdornment>
-                )
+                ),
               }}
             />
             <TextField
-              name='hotelname'
-              id='outlined-bare'
-              type='Password'
+              name="hotelname"
+              id="outlined-bare"
+              type="Password"
               className={classes.textField}
-              variant='outlined'
-              placeholder='Enter Your Passoword'
+              variant="outlined"
+              placeholder="Enter Your Passoword"
               fullWidth
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start' style={{ color: '#1e90ff' }}>
+                  <InputAdornment position="start" className={classes.icon}>
                     <LockIcon />
                   </InputAdornment>
-                )
+                ),
               }}
             />
             <Button
-              variant='contained'
+              variant="contained"
               fullWidth
-              color='secondary'
+              color="primary"
               className={classes.button}
             >
               Login
-            </Button>
+                </Button>
           </Container>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {
@@ -27,7 +27,7 @@ class Layout extends Component {
         <div className='header' className={classes.mainheader}>
           <div className={classes.overlay}></div>
           <div className={classes.headerContent}>
-            <Typography variant='h4' color='defulat' className={classes.typo}>
+            <Typography variant='h4' color='default' className={classes.typo}>
               Welcome To STAY IN
             </Typography>
             <div>
@@ -52,16 +52,16 @@ class Layout extends Component {
           </div>
         </div>
         <div className={classes.Search}>
-          <Container maxWidth='sm'>
+          <Container maxWidth="sm">
             <TextField
-              name='Search'
+              name="Search"
               className={classes.textField}
-              variant='outlined'
-              placeholder='Search Your Hotel'
+              variant="outlined"
+              placeholder="Search Your Hotel"
               fullWidth
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position='start' style={{ color: '#F50057' }}>
+                  <InputAdornment position="start" style={{ color: "#F50057" }}>
                     <SearchIcon />
                   </InputAdornment>
                 )
@@ -69,18 +69,18 @@ class Layout extends Component {
             />
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth='md'>
+        <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {cards.map(card => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image='https://source.unsplash.com/random'
-                    title='Hotel'
+                    image="https://source.unsplash.com/random"
+                    title="Hotel"
                   />
                   <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant='h5' component='h2'>
+                    <Typography gutterBottom variant="h5" component="h2">
                       Hotel Name
                     </Typography>
                     <Typography style={{ paddingTop: 10 }}>
@@ -93,11 +93,11 @@ class Layout extends Component {
                   </CardContent>
                   <CardActions>
                     <Button
-                      variant='contained'
-                      color='secondary'
+                      variant="contained"
+                      color="secondary"
                       className={classes.button}
                     >
-                      BOOK NOW{' '}
+                      BOOK NOW{" "}
                     </Button>
                   </CardActions>
                 </Card>
@@ -105,7 +105,6 @@ class Layout extends Component {
             ))}
           </Grid>
         </Container>
-        <Footer />
       </div>
     );
   }

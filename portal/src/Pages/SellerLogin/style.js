@@ -12,6 +12,10 @@ const style = theme => ({
      button:{
        marginTop:theme.spacing(2),
      },
+     icon:{
+      color:theme.palette.primary.main
+    }
+     ,
      img:{
        height:theme.spacing(25),
       width:theme.spacing(25),
