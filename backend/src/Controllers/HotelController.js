@@ -1,5 +1,4 @@
 const { Hotel } = require('Models');
-const jwt = require('jsonwebtoken');
 const config = require('config');
 const hotelragistation = async (req, res, next) => {
   const {
