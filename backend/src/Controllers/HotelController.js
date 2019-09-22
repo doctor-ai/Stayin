@@ -1,6 +1,6 @@
 const { Hotel } = require('Models');
 const config = require('config');
-const hotelragistation = async (req, res, next) => {
+const addHotel = async (req, res, next) => {
   const {
     hotelname,
     address,
@@ -78,10 +78,10 @@ const hotelragistation = async (req, res, next) => {
     });
     return;
   }
-  const hotel = await Hotel.findOne({ email, password, pancard, mobile });
+  const hotel = await Hotel.findOne({ email, pancard, mobile });
   if (hotel) {
     res.json({
-      code: 401,
+      code: 200,
       data: {
         message: ['hotel is already exists']
       },
@@ -114,6 +114,42 @@ const hotelragistation = async (req, res, next) => {
   return;
 };
 
+
+const getHotels = async (req, res, next) => {
+  const hotels = await Hotel.find();
+  res.json({
+    code: 200,
+    data: {
+      hotels
+    },
+    success: true,
+  })
+}
+
+const getHotelsById = async (req, res, next) => {
+  const { _id } = req.params;
+  const hotels = await Hotel.findOne({ _id });
+  if (hotels) {
+    res.json({
+      code: 200,
+      data: {
+        hotel,
+      },
+      success: true,
+    })
+  } else {
+    res.json({
+      code: 200,
+      data: {
+        message: ['No Hotel Found']
+      },
+      success: false,
+    })
+  }
+}
+
 module.exports = {
-  hotelragistation
+  addHotel,
+  getHotels,
+  getHotelsById
 };
