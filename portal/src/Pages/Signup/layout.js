@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './style';
-import { Header } from 'Components';
+import { Header, Footer } from 'Components';
 
 import {
   withStyles,
@@ -73,7 +73,8 @@ class Layout extends Component {
                 onClick={this.onClickSignup}
                 fullWidth
                 variant='contained'
-                color='primary'
+                color='secondary'
+                href='/'
                 className={classes.submit}
               >
                 Signup
@@ -81,6 +82,7 @@ class Layout extends Component {
             </form>
           </div>
         </Container>
+        <Footer />
       </div>
     );
   }
