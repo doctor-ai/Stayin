@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const hotelSchema = new Schema(
   {
-    hotelname: {
+    hotelName: {
       type: mongoose.Schema.Types.String,
       require: true
     },
@@ -22,7 +22,6 @@ const hotelSchema = new Schema(
       type: mongoose.Schema.Types.Number,
       require: true
     },
-
     state: {
       type: mongoose.Schema.Types.String,
       require: true
@@ -35,10 +34,6 @@ const hotelSchema = new Schema(
       type: mongoose.Schema.Types.String,
       require: true,
       unique: true
-    },
-    password: {
-      type: mongoose.Schema.Types.String,
-      require: true
     },
     mobile: {
       type: mongoose.Schema.Types.Number,
@@ -53,7 +48,6 @@ const hotelSchema = new Schema(
       type: mongoose.Schema.Types.String,
       require: true
     },
-
     image: {
       type: mongoose.Schema.Types.String,
       require: true
@@ -62,6 +56,6 @@ const hotelSchema = new Schema(
   SchemaOptions
 );
 
-hotelSchema.index({ email: 1, sparse: true }, { background: true });
+hotelSchema.index({ hotelName: 1, sparse: true }, { background: true });
 
 module.exports = mongoose.model('Hotel', hotelSchema);
