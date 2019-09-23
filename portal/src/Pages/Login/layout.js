@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Config from 'Config';
+
+import { AuthServices } from 'Services';
 
 import {
   withStyles,
@@ -25,12 +25,9 @@ class Layout extends Component {
   onClickLogin = async () => {
     this.setState({ isChecking: true });
     const { username, password } = this.state;
-    const response = await axios.post(`${Config.SERVER_URL}/login`, {
-      username,
-      password
-    });
+    const response = await AuthServices.login(username, password);
     if (!response.success) {
-      const message = response.data.data.message;
+      const message = response.data.message;
       console.log(message);
       this.setState({
         message: message[0],
@@ -38,11 +35,6 @@ class Layout extends Component {
         variant: 'error'
       });
     } else {
-      this.setState({
-        isOpen: true,
-        message: 'Successfully login',
-        variant: 'success'
-      });
       this.props.history.push('/');
     }
     this.setState({

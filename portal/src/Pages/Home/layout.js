@@ -16,9 +16,15 @@ import {
 import style from './style';
 import { Header, Footer } from 'Components';
 
+import { AuthServices } from 'Services';
+
 const cards = [1, 2, 3];
 
 class Layout extends Component {
+  handleLogout = () => {
+    AuthServices.logout();
+    this.props.history.push('/login');
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -30,25 +36,39 @@ class Layout extends Component {
             <Typography variant='h4' color='defulat' className={classes.typo}>
               Welcome To STAY IN
             </Typography>
-            <div>
-              <Button
-                href='/login'
-                onClick='/login'
-                variant='contained'
-                color='secondary'
-                className={classes.button}
-              >
-                Login
-              </Button>
-              <Button
-                href='/signup'
-                variant='contained'
-                color='secondary'
-                className={classes.button}
-              >
-                SingUp
-              </Button>
-            </div>
+            {AuthServices.isAuthenticated() && (
+              <div>
+                <Button
+                  onClick={this.handleLogout}
+                  variant='contained'
+                  color='secondary'
+                  className={classes.button}
+                >
+                  Logout
+                </Button>
+              </div>
+            )}
+            {!AuthServices.isAuthenticated() && (
+              <div>
+                <Button
+                  href='/login'
+                  onClick='/login'
+                  variant='contained'
+                  color='secondary'
+                  className={classes.button}
+                >
+                  Login
+                </Button>
+                <Button
+                  href='/signup'
+                  variant='contained'
+                  color='secondary'
+                  className={classes.button}
+                >
+                  SingUp
+                </Button>
+              </div>
+            )}
           </div>
         </div>
         <div className={classes.Search}>
