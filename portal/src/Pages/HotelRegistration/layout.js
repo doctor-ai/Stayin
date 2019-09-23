@@ -10,6 +10,7 @@ import style from './style';
 import { Header } from 'Components';
 import axios from 'axios';
 import Config from 'Config';
+import { HotelServices } from 'Services';
 
 class Layout extends Component {
   state = {
@@ -37,7 +38,7 @@ class Layout extends Component {
   handleSubmit = async () => {
     //   Data From The User
     const {
-      hotelname,
+      hotelName,
       address,
       city,
       pincode,
@@ -48,12 +49,15 @@ class Layout extends Component {
       password,
       pancard,
       description,
-      image
+      image,
     } = this.state;
 
     // Api Code
-    await axios.post(`${Config.SERVER_URL}/hotelragistration`, {
-      hotelname,
+
+    const hotelImageUrl = await HotelServices.addHotelImage(image.name,image);
+
+    const response = await HotelServices.addHotel({
+      hotelName,
       address,
       city,
       pincode,
@@ -64,12 +68,12 @@ class Layout extends Component {
       password,
       pancard,
       description,
-      image
+      image:hotelImageUrl,
     });
 
     // Clear The State
     this.setState({
-      hotelname: '',
+      hotelName: '',
       address: '',
       city: '',
       pincode: '',
@@ -85,6 +89,9 @@ class Layout extends Component {
     });
   };
 
+  handleImage = (e)=>{
+    this.setState({image:e.target.files[0]});
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -95,12 +102,12 @@ class Layout extends Component {
             <Grid item xs={12} md={12} lg={12}>
               <TextField
                 name='hotelname'
-                id='hotelname'
+                id='hotelName'
                 className={classes.textField}
                 variant='outlined'
                 label='Hotel Name'
                 fullWidth
-                value={this.state.hotelname}
+                value={this.state.hotelName}
                 onChange={this.handleInput}
               />
             </Grid>
@@ -234,13 +241,12 @@ class Layout extends Component {
             <Grid item xs={12} md={12} lg={12}>
               <TextField
                 id='image'
-                // type='file'
+                type='file'
                 name='Select Hotel Image'
                 className={classes.textField}
                 variant='outlined'
                 fullWidth
-                value={this.state.image}
-                onChange={this.handleInput}
+                onChange={this.handleImage}
               />
             </Grid>
           </Grid>

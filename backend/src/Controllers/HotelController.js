@@ -2,7 +2,7 @@ const { Hotel } = require('Models');
 const config = require('config');
 const addHotel = async (req, res, next) => {
   const {
-    hotelname,
+    hotelName,
     address,
     city,
     pincode,
@@ -16,7 +16,7 @@ const addHotel = async (req, res, next) => {
     image
   } = req.body;
   const message = [];
-  if (!hotelname) {
+  if (!hotelName) {
     message.push('hotelname is required');
   }
   if (!address) {
@@ -56,7 +56,7 @@ const addHotel = async (req, res, next) => {
   if (
     !email ||
     !password ||
-    !hotelname ||
+    !hotelName ||
     !address ||
     !city ||
     !pincode ||
@@ -78,7 +78,7 @@ const addHotel = async (req, res, next) => {
     });
     return;
   }
-  const hotel = await Hotel.findOne({ email, pancard, mobile });
+  let hotel = await Hotel.findOne({ email, pancard, mobile });
   if (hotel) {
     res.json({
       code: 200,
@@ -89,8 +89,8 @@ const addHotel = async (req, res, next) => {
     });
     return;
   }
-  const hotel = await new Hotel({
-    hotelname,
+  hotel = await new Hotel({
+    hotelName,
     address,
     city,
     pincode,
@@ -133,7 +133,7 @@ const getHotelsById = async (req, res, next) => {
     res.json({
       code: 200,
       data: {
-        hotel,
+        hotels,
       },
       success: true,
     })
@@ -148,8 +148,26 @@ const getHotelsById = async (req, res, next) => {
   }
 }
 
+const searchHotel = async(req,res,next)=>{
+  const { search } = req.params;
+  const hotels = await Hotel.find({
+    $or:[
+      {hotelName:{$regex:search,$options:'i'}},
+      {city:{$regex:search,$options:'i'}}
+    ]
+  });
+  return res.json({
+    code:200,
+    data:{
+      hotels,
+    },
+    success:true,
+  })
+}
+
 module.exports = {
   addHotel,
   getHotels,
-  getHotelsById
+  getHotelsById,
+  searchHotel
 };

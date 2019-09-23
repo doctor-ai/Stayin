@@ -21,7 +21,7 @@ class Root extends React.Component {
           <Route exact path='/admin/login' component={SellerLogin} />
           <Route exact path='/admin/signup' component={SellerSignup} />
           <Route exact path='/admin/addhotel' component={HotelRegistration} />
-          <Route exact path='/room' component={HotelRooms} />
+          <Route exact path='/room/:id' component={HotelRooms} />
           <Route exact path="/admin" component={Admin} />
         </Switch>
       </Router>

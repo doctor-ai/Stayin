@@ -70,11 +70,10 @@ class Layout extends Component {
               </Grid>
 
               <Button
-                onClick={this.onClickSignup}
+                // onClick={this.onClickSignup}
                 fullWidth
                 variant='contained'
                 color='secondary'
-                href='/'
                 className={classes.submit}
               >
                 Signup

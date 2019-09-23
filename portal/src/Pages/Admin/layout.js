@@ -25,11 +25,11 @@ class Layout extends React.Component {
             </div>
             <div>
             <Button
-                        variant="contained"
-                        color="secondary"
-                        className={classes.button}
-                      >
-                          ADD HOTEL
+            variant="contained"
+            color="secondary"
+            onClick={()=>{this.props.history.push('/admin/addhotel')}}
+            className={classes.button} >
+            ADD HOTEL
              </Button>
             </div>
         </Container>

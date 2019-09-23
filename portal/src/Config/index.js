@@ -15,7 +15,18 @@ const config = {
   },
   get VERSION() {
     return packageJson.version;
-  }
+  },
+  get FirebaseConfig(){
+    return {
+      apiKey: "AIzaSyClNj0DJgcEJUVYJ6GUDt4evTWfaa9_aK0",
+      authDomain: "fir-8c243.firebaseapp.com",
+      databaseURL: "https://fir-8c243.firebaseio.com",
+      projectId: "fir-8c243",
+      storageBucket: "fir-8c243.appspot.com",
+      messagingSenderId: "255974233649",
+      appId: "1:255974233649:web:9402b696253a881ccfe710"
+    }
+  },
 };
 
 export default config;

@@ -10,5 +10,6 @@ router.post('/signup', AuthController.signup);
 router.post('/addhotel', HotelController.addHotel);
 router.get('/hotels', HotelController.getHotels);
 router.get('/hotels/:_id', HotelController.getHotelsById);
+router.get('/hotels/search/:search', HotelController.searchHotel);
 
 module.exports = router;

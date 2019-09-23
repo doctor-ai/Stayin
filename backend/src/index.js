@@ -24,13 +24,13 @@ const server = (async () => {
     });
     debug('Connected to database');
     app.use(cors());
-    app.use(express.static(path.join(__dirname, '../../portal/build/')));
+    // app.use(express.static(path.join(__dirname, '../../portal/build/')));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use('/api/1.0', router);
-    if (process.env.NODE_ENV === 'production') {
-      app.use(portalServe);
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   app.use(portalServe);
+    // }
     const PORT = process.env.PORT || config.get('port');
     app.listen(PORT);
     debug('Server is running...');
