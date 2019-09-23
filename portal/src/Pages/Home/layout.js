@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 
 import {HotelServices} from 'Services';
-import { Header } from 'Components';
+import { Header,Footer} from 'Components';
 import style from './style';
 
 
@@ -105,12 +105,12 @@ class Layout extends Component {
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {this.state.hotels.length===0 && (
-              <div>
-                No Hotels Found
+              <div className={classes.notfound}>
+               Oops !! NO HOTEL FOUND
               </div>
             )}
             {this.state.hotels.length> 0 && this.state.hotels.map((hotel,index) => (
-              <Grid item key={index} xs={12} sm={6} md={4}>
+              <Grid item key={index} xs={12} sm={6} md={4} className={classes.GridCard}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -143,6 +143,7 @@ class Layout extends Component {
             ))}
           </Grid>
         </Container>
+        <Footer classes={classes.Footer} />
       </div>
     );
   }

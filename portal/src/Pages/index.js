@@ -9,6 +9,7 @@ import SellerSignup from 'Pages/SellerSignup';
 import HotelRegistration from 'Pages/HotelRegistration';
 import HotelRooms from 'Pages/HotelRoom';
 import Admin from 'Pages/Admin';
+import ErrorPage from 'Pages/ErrorPage';
 
 class Root extends React.Component {
   render() {
@@ -23,6 +24,7 @@ class Root extends React.Component {
           <Route exact path='/admin/addhotel' component={HotelRegistration} />
           <Route exact path='/room/:id' component={HotelRooms} />
           <Route exact path="/admin" component={Admin} />
+          <Route  path="*" component={ErrorPage} />
         </Switch>
       </Router>
     );

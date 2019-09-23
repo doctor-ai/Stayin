@@ -29,7 +29,7 @@ const style = theme => ({
   button: {
     marginTop: '10px',
     textAlign: 'center',
-    marginLeft: 9,
+    marginLeft: theme.spacing() * 1,
     padding: '10px 30px'
   },
   typo: {
@@ -54,13 +54,23 @@ const style = theme => ({
     top: theme.spacing(4),
     border: 'none',
     borderRadius: '1%',
-
     backgroundColor: 'white',
     alignItems: 'center'
   },
+
   cardGrid: {
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(0)
+    paddingBottom: theme.spacing(0),
+    height:theme.spacing() * 50,
+    position:"relative",
+    height:"100%",
+   },
+  notfound:{
+    height:theme.spacing() * 50,
+    position:"sticky",
+    margin:"0px auto",
+    color:"#1e90ff",
+    fontSize:theme.spacing() * 3
   },
   card: {
     height: '100%',
@@ -72,6 +82,9 @@ const style = theme => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  Footer:{
+    height:"100%",
   }
 });
 export default style;
