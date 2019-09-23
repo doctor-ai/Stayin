@@ -4,12 +4,14 @@ import {
   Container,
   Grid,
   TextField,
-  Button
+  Button,
+  CircularProgress
 } from '@material-ui/core';
 import style from './style';
 import { Header } from 'Components';
 import axios from 'axios';
 import Config from 'Config';
+import { Snackbar } from 'Components';
 
 class Layout extends Component {
   state = {
@@ -25,16 +27,13 @@ class Layout extends Component {
     pancard: '',
     description: '',
     image: '',
-    isAdded: false
-  };
-
-  handleInput = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
+    message: '',
+    variant: 'error',
+    isChecking: false
   };
 
   handleSubmit = async () => {
+    this.setState({ isChecking: true });
     //   Data From The User
     const {
       hotelname,
@@ -52,7 +51,7 @@ class Layout extends Component {
     } = this.state;
 
     // Api Code
-    await axios.post(`${Config.SERVER_URL}/hotelragistration`, {
+    const response = await axios.post(`${Config.SERVER_URL}/addhotel`, {
       hotelname,
       address,
       city,
@@ -66,6 +65,20 @@ class Layout extends Component {
       description,
       image
     });
+    if (!response.success) {
+      const data = response.data.message;
+      this.setState({
+        message: data[0],
+        isOpen: true,
+        variant: 'error'
+      });
+    } else {
+      this.setState({
+        isOpen: true,
+        message: 'Hotel Added successfully..',
+        variant: 'success'
+      });
+    }
 
     // Clear The State
     this.setState({
@@ -81,15 +94,37 @@ class Layout extends Component {
       pancard: '',
       description: '',
       image: '',
-      isAdded: true
+      isChecking: false
     });
+    // console.log(response.data.message);
   };
 
   render() {
     const { classes } = this.props;
+    const {
+      hotelname,
+      address,
+      city,
+      pincode,
+      mobile,
+      state,
+      star,
+      email,
+      password,
+      pancard,
+      description,
+      image
+    } = this.state;
+
     return (
       <div>
         <Header title='Hotel Registration' />
+        <Snackbar
+          errorMessage={this.state.message}
+          isOpen={this.state.isOpen}
+          handleClose={() => this.setState({ isOpen: false })}
+          variant={this.state.variant}
+        />
         <Container maxWidth='md'>
           <Grid container spacing={3} className={classes.container}>
             <Grid item xs={12} md={12} lg={12}>
@@ -100,8 +135,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Hotel Name'
                 fullWidth
-                value={this.state.hotelname}
-                onChange={this.handleInput}
+                value={hotelname}
+                onChange={e => this.setState({ hotelname: e.target.value })}
               />
             </Grid>
 
@@ -114,8 +149,8 @@ class Layout extends Component {
                 className={classes.textField}
                 variant='outlined'
                 fullWidth
-                value={this.state.address}
-                onChange={this.handleInput}
+                value={address}
+                onChange={e => this.setState({ address: e.target.value })}
               />
             </Grid>
             {/* Second Row */}
@@ -127,8 +162,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='City'
                 fullWidth
-                value={this.state.city}
-                onChange={this.handleInput}
+                value={city}
+                onChange={e => this.setState({ city: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -139,8 +174,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Pin code'
                 fullWidth
-                value={this.state.pincode}
-                onChange={this.handleInput}
+                value={pincode}
+                onChange={e => this.setState({ pincode: e.target.value })}
               />
             </Grid>
             {/* Third Row */}
@@ -152,8 +187,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Mobile No'
                 fullWidth
-                value={this.state.mobile}
-                onChange={this.handleInput}
+                value={mobile}
+                onChange={e => this.setState({ mobile: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -164,8 +199,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='State'
                 fullWidth
-                value={this.state.state}
-                onChange={this.handleInput}
+                value={state}
+                onChange={e => this.setState({ state: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -176,8 +211,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Star'
                 fullWidth
-                value={this.state.star}
-                onChange={this.handleInput}
+                value={star}
+                onChange={e => this.setState({ star: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
@@ -189,8 +224,8 @@ class Layout extends Component {
                 label='Email'
                 placeholder='Enter Your Email'
                 fullWidth
-                value={this.state.email}
-                onChange={this.handleInput}
+                value={email}
+                onChange={e => this.setState({ email: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
@@ -202,8 +237,8 @@ class Layout extends Component {
                 type='password'
                 variant='outlined'
                 fullWidth
-                value={this.state.password}
-                onChange={this.handleInput}
+                value={password}
+                onChange={e => this.setState({ password: e.target.value })}
               />
             </Grid>
             {/* last-row */}
@@ -215,8 +250,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Pancard No'
                 fullWidth
-                value={this.state.pancard}
-                onChange={this.handleInput}
+                value={pancard}
+                onChange={e => this.setState({ pancard: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={12} lg={12}>
@@ -227,8 +262,8 @@ class Layout extends Component {
                 variant='outlined'
                 label='Description'
                 fullWidth
-                value={this.state.description}
-                onChange={this.handleInput}
+                value={description}
+                onChange={e => this.setState({ description: e.target.value })}
               />
             </Grid>
             <Grid item xs={12} md={12} lg={12}>
@@ -239,8 +274,8 @@ class Layout extends Component {
                 className={classes.textField}
                 variant='outlined'
                 fullWidth
-                value={this.state.image}
-                onChange={this.handleInput}
+                value={image}
+                onChange={e => this.setState({ image: e.target.value })}
               />
             </Grid>
           </Grid>
@@ -251,8 +286,10 @@ class Layout extends Component {
             variant='contained'
             color='primary'
             className={classes.submit}
+            disabled={this.state.isChecking ? true : false}
           >
-            hotelragistration
+            {this.state.isChecking && <CircularProgress size={20} />}hotel
+            ragistration
           </Button>
         </Container>
       </div>

@@ -89,7 +89,7 @@ const addHotel = async (req, res, next) => {
     });
     return;
   }
-  const hotel = await new Hotel({
+  await new Hotel({
     hotelname,
     address,
     city,
@@ -114,7 +114,6 @@ const addHotel = async (req, res, next) => {
   return;
 };
 
-
 const getHotels = async (req, res, next) => {
   const hotels = await Hotel.find();
   res.json({
@@ -122,9 +121,9 @@ const getHotels = async (req, res, next) => {
     data: {
       hotels
     },
-    success: true,
-  })
-}
+    success: true
+  });
+};
 
 const getHotelsById = async (req, res, next) => {
   const { _id } = req.params;
@@ -133,20 +132,20 @@ const getHotelsById = async (req, res, next) => {
     res.json({
       code: 200,
       data: {
-        hotel,
+        hotel
       },
-      success: true,
-    })
+      success: true
+    });
   } else {
     res.json({
       code: 200,
       data: {
         message: ['No Hotel Found']
       },
-      success: false,
-    })
+      success: false
+    });
   }
-}
+};
 
 module.exports = {
   addHotel,
