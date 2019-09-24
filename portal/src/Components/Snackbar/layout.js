@@ -1,7 +1,7 @@
+import * as React from 'react';
 import { Snackbar } from '@material-ui/core';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/styles';
-import * as React from 'react';
 
 import style from './style';
 class Layout extends React.Component {

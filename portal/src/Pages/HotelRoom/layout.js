@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 
 import style from './style';
-import { Header, Footer } from 'Components';
+import { Header } from 'Components';
 
 import { HotelServices } from 'Services';
 
@@ -65,7 +65,7 @@ class Layout extends Component {
                       </div>
                     </div>
                     <div className={classes.center}>
-                      <h4>Why This Hotel ??</h4>
+                      <h5>Why This Hotel ??</h5>
                       <p>{hotel.description}</p>
                       <p className={classes.Address}>
                         <b>Address:</b> <span>{hotel.address}</span>
@@ -86,7 +86,7 @@ class Layout extends Component {
             </Grid>
           )}
         </Container>
-        <Footer />
+
       </div>
     );
   }

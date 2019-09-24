@@ -13,7 +13,7 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import style from './style';
-import { Header, Footer, Snackbar } from 'Components';
+import { Header, Snackbar } from 'Components';
 
 class Layout extends Component {
   state = {
@@ -119,7 +119,8 @@ class Layout extends Component {
                 onClick={this.onClickLogin}
                 variant='contained'
                 color='primary'
-                className={classes.buttonStyle}
+                className={classes.button}
+                fullWidth
                 disabled={this.state.isChecking ? true : false}
               >
                 {this.state.isChecking && <CircularProgress size={20} />}Login
@@ -127,8 +128,7 @@ class Layout extends Component {
             </form>
           </div>
         </Container>
-        <Footer />
-      </div>
+          </div>
     );
   }
 }

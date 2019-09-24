@@ -1,6 +1,7 @@
 const style = theme => ({
   navigationBar: {
-    backgroundColor: theme.palette.primary.main
+      backgroun0dColor: theme.palette.primary.main
+
   }
 });
 export default style;

@@ -46,15 +46,14 @@ const style = theme => ({
   Search: {
     height: 125,
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: "#d3d3d3"
   },
   textField: {
     display: 'flex',
     position: 'relative',
     top: theme.spacing(4),
     border: 'none',
-    borderRadius: '1%',
-
+    borderRadius: theme.spacing(1),
     backgroundColor: 'white',
     alignItems: 'center'
   },
@@ -72,6 +71,17 @@ const style = theme => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  Footer:{
+    height:"100%",
+  },
+  notfound:{
+    height:theme.spacing() * 50,
+    position:"sticky",
+    margin:"0px auto",
+    color:"#1e90ff",
+    fontSize:theme.spacing() * 3
   }
+
 });
 export default style;

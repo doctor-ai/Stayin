@@ -9,7 +9,7 @@ import {
   TableBody,
   Container
 } from '@material-ui/core';
-import { Header, Footer } from 'Components';
+import { Header} from 'Components';
 import { HotelServices } from 'Services';
 
 import style from './style';
@@ -37,6 +37,7 @@ class Layout extends React.Component {
               <Button
                 variant='contained'
                 color='secondary'
+
                 onClick={() => {
                   this.props.history.push('/');
                 }}
@@ -75,7 +76,6 @@ class Layout extends React.Component {
             </TableBody>
           </Table>
         </div>
-        <Footer />
       </div>
     );
   }

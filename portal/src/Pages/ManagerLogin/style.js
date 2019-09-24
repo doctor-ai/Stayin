@@ -22,11 +22,10 @@ const style = theme => ({
   textFieldStyle: {
     width: theme.spacing() * 40
   },
-  buttonStyle: {
-    marginTop: theme.spacing() * 4,
+  button: {
+    marginTop: theme.spacing() * 2,
     fontSize: theme.spacing() * 2,
     fontWeight: 'bold',
-    width: theme.spacing() * 20
   },
   createSignup: {
     marginTop: theme.spacing() * 5
