@@ -30,6 +30,23 @@ class AuthService {
     logger.debug(response);
     return response;
   }
+  async managerlogin(username, password) {
+    const response = await NetworkServices.post(
+      `${Config.SERVER_URL}/managerlogin`,
+      {
+        username,
+        password
+      }
+    );
+
+    if (response.success) {
+      localStorage.setItem(AUTH_LOCALSTORAGEKEY, JSON.stringify(response.data));
+      this._auth = response.data;
+    }
+
+    logger.debug(response);
+    return response;
+  }
 
   isAuthenticated() {
     if (!this._auth) {

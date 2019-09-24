@@ -1,68 +1,133 @@
 import React, { Component } from 'react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { AuthServices } from 'Services';
+import { AccountCircle } from '@material-ui/icons';
 import LockIcon from '@material-ui/icons/Lock';
+
 import {
   withStyles,
-  Container,
-  CssBaseline,
+  InputAdornment,
   TextField,
-  Button
+  Button,
+  Container,
+  Grid,
+  CircularProgress
 } from '@material-ui/core';
 import style from './style';
-import { Header } from 'Components';
+import { Header, Footer, Snackbar } from 'Components';
+
 class Layout extends Component {
+  state = {
+    username: '',
+    password: '',
+    isOpen: false,
+    message: '',
+    variant: 'error',
+    isChecking: false
+  };
+  onClickLogin = async () => {
+    this.setState({ isChecking: true });
+    const { username, password } = this.state;
+    const response = await AuthServices.Managerlogin(username, password);
+    if (!response.success) {
+      const message = response.data.message;
+      console.log(message);
+      this.setState({
+        message: message[0],
+        isOpen: true,
+        variant: 'error'
+      });
+    } else {
+      this.props.history.push('/addhotel');
+    }
+    this.setState({
+      username: '',
+      password: '',
+      firstname: '',
+      lastname: '',
+      isChecking: false
+    });
+  };
+
   render() {
     const { classes } = this.props;
+    const { username, password } = this.state;
     return (
-      <div>
-        <Header title='Hotel Login' />
-        <CssBaseline />
-        <div className={classes.container}>
-          <img src='/images/boy.svg' className={classes.img} alt='svgicon' />
-          <Container maxWidth='sm'>
-            {/* You can change size xs */}
-            <TextField
-              name='hotelname'
-              type='Email'
-              className={classes.textField}
-              variant='outlined'
-              placeholder='Enter Your Email'
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position='start' style={{ color: '#1e90ff' }}>
-                    <AccountCircle />
-                  </InputAdornment>
-                )
-              }}
-            />
-            <TextField
-              name='hotelname'
-              id='outlined-bare'
-              type='Password'
-              className={classes.textField}
-              variant='outlined'
-              placeholder='Enter Your Passoword'
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position='start' style={{ color: '#1e90ff' }}>
-                    <LockIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
-            <Button
-              variant='contained'
-              fullWidth
-              color='secondary'
-              className={classes.button}
-            >
-              Login
-            </Button>
-          </Container>
-        </div>
+      <div className={classes.container}>
+        <Header title='Login' />
+        <Snackbar
+          errorMessage={this.state.message}
+          isOpen={this.state.isOpen}
+          handleClose={() => this.setState({ isOpen: false })}
+          variant={this.state.variant}
+        />
+        <Container component='main' maxWidth='xs'>
+          <div className={classes.paper}>
+            <img src='/images/boy.svg' alt='svgicon' height='150' width='150' />
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    AccountCircle
+                    autoFocus
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='username'
+                    placeholder='Email'
+                    name='email'
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment
+                          position='start'
+                          style={{ color: '#1e90ff' }}
+                        >
+                          <AccountCircle />
+                        </InputAdornment>
+                      )
+                    }}
+                    value={username}
+                    onChange={e => this.setState({ username: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    name='password'
+                    placeholder='password'
+                    type='password'
+                    id='password'
+                    autoComplete='current-password'
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment
+                          position='start'
+                          style={{ color: '#1e90ff' }}
+                        >
+                          <LockIcon />
+                        </InputAdornment>
+                      )
+                    }}
+                    value={password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </Grid>
+              </Grid>
+
+              <Button
+                onClick={this.onClickLogin}
+                variant='contained'
+                color='primary'
+                className={classes.buttonStyle}
+                disabled={this.state.isChecking ? true : false}
+              >
+                {this.state.isChecking && <CircularProgress size={20} />}ManagerLogin
+              </Button>
+            </form>
+          </div>
+        </Container>
+        <Footer />
       </div>
     );
   }

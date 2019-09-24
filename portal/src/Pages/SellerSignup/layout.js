@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import style from './style';
+import { Header, Footer, Snackbar } from 'Components';
+import axios from 'axios';
+import Config from 'Config';
+
 import {
   withStyles,
   Container,
@@ -7,291 +12,150 @@ import {
   Button,
   CircularProgress
 } from '@material-ui/core';
-import style from './style';
-import { Header } from 'Components';
-import axios from 'axios';
-import Config from 'Config';
-import { Snackbar } from 'Components';
 
 class Layout extends Component {
   state = {
-    hotelname: '',
+    name: '',
     address: '',
-    city: '',
-    pincode: '',
     mobile: '',
-    state: '',
-    star: '',
-    email: '',
+    username: '',
     password: '',
-    pancard: '',
-    description: '',
-    image: '',
+    isOpen: false,
     message: '',
     variant: 'error',
     isChecking: false
   };
-
-  handleSubmit = async () => {
+  onClickSignup = async () => {
     this.setState({ isChecking: true });
-    //   Data From The User
-    const {
-      hotelname,
+    const { name, address, mobile, username, password } = this.state;
+    const response = await axios.post(`${Config.SERVER_URL}/managersignup`, {
+      name,
       address,
-      city,
-      pincode,
       mobile,
-      state,
-      star,
-      email,
-      password,
-      pancard,
-      description,
-      image
-    } = this.state;
-
-    // Api Code
-    const response = await axios.post(`${Config.SERVER_URL}/addhotel`, {
-      hotelname,
-      address,
-      city,
-      pincode,
-      mobile,
-      state,
-      star,
-      email,
-      password,
-      pancard,
-      description,
-      image
+      username,
+      password
     });
-    if (!response.success) {
-      const data = response.data.message;
+    if (!response.data.success) {
+      const message = response.data.data.message;
       this.setState({
-        message: data[0],
+        message: message[0],
         isOpen: true,
         variant: 'error'
       });
     } else {
-      this.setState({
-        isOpen: true,
-        message: 'Hotel Added successfully..',
-        variant: 'success'
-      });
+      this.props.history.push('/addhotel');
     }
-
-    // Clear The State
     this.setState({
-      hotelname: '',
-      address: '',
-      city: '',
-      pincode: '',
-      mobile: '',
-      state: '',
-      star: '',
-      email: '',
+      username: '',
       password: '',
-      pancard: '',
-      description: '',
-      image: '',
+      name: '',
+      address: '',
+      mobile: '',
       isChecking: false
     });
-    // console.log(response.data.message);
   };
 
   render() {
     const { classes } = this.props;
-    const {
-      hotelname,
-      address,
-      city,
-      pincode,
-      mobile,
-      state,
-      star,
-      email,
-      password,
-      pancard,
-      description,
-      image
-    } = this.state;
-
+    const { name, address, mobile, username, password } = this.state;
     return (
-      <div>
-        <Header title='Hotel Registration' />
+      <div className={classes.container}>
+        <Header title='Signup' />
         <Snackbar
           errorMessage={this.state.message}
           isOpen={this.state.isOpen}
           handleClose={() => this.setState({ isOpen: false })}
           variant={this.state.variant}
         />
-        <Container maxWidth='md'>
-          <Grid container spacing={3} className={classes.container}>
-            <Grid item xs={12} md={12} lg={12}>
-              <TextField
-                name='hotelname'
-                id='hotelname'
-                className={classes.textField}
-                variant='outlined'
-                label='Hotel Name'
-                fullWidth
-                value={hotelname}
-                onChange={e => this.setState({ hotelname: e.target.value })}
-              />
-            </Grid>
+        <Container component='main' maxWidth='xs'>
+          <div className={classes.paper}>
+            <img src='/images/boy.svg' alt='svgicon' height='150' width='150' />
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete='fname'
+                    name='name'
+                    variant='outlined'
+                    required
+                    fullWidth
+                    placeholder='Enter name'
+                    id='name'
+                    autoFocus
+                    value={name}
+                    onChange={e => this.setState({ name: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='mobile'
+                    placeholder='Enter mobile No'
+                    name='lastName'
+                    autoComplete='lname'
+                    value={mobile}
+                    onChange={e => this.setState({ mobile: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='address'
+                    placeholder='Email'
+                    name='email'
+                    // autoComplete='email'
+                    value={address}
+                    onChange={e => this.setState({ address: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='email'
+                    placeholder='Email'
+                    name='email'
+                    // autoComplete='email'
+                    value={username}
+                    onChange={e => this.setState({ username: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    name='password'
+                    placeholder='password'
+                    type='password'
+                    id='password'
+                    autoComplete='current-password'
+                    value={password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </Grid>
+              </Grid>
 
-            <Grid item xs={12} md={6} lg={6}>
-              <TextField
-                name='address'
-                id='address'
-                label='Address'
-                multiline
-                className={classes.textField}
-                variant='outlined'
+              <Button
+                onClick={this.onClickSignup}
                 fullWidth
-                value={address}
-                onChange={e => this.setState({ address: e.target.value })}
-              />
-            </Grid>
-            {/* Second Row */}
-            <Grid item xs={12} md={6} lg={6}>
-              <TextField
-                name='city'
-                id='city'
-                className={classes.textField}
-                variant='outlined'
-                label='City'
-                fullWidth
-                value={city}
-                onChange={e => this.setState({ city: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                name='pincode'
-                id='pincode'
-                className={classes.textField}
-                variant='outlined'
-                label='Pin code'
-                fullWidth
-                value={pincode}
-                onChange={e => this.setState({ pincode: e.target.value })}
-              />
-            </Grid>
-            {/* Third Row */}
-            <Grid item xs={12} md={4} lg={4}>
-              <TextField
-                id='mobile'
-                name='mobileno'
-                className={classes.textField}
-                variant='outlined'
-                label='Mobile No'
-                fullWidth
-                value={mobile}
-                onChange={e => this.setState({ mobile: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <TextField
-                id='state'
-                name='state'
-                className={classes.textField}
-                variant='outlined'
-                label='State'
-                fullWidth
-                value={state}
-                onChange={e => this.setState({ state: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <TextField
-                id='star'
-                name='star'
-                className={classes.textField}
-                variant='outlined'
-                label='Star'
-                fullWidth
-                value={star}
-                onChange={e => this.setState({ star: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={6}>
-              <TextField
-                id='email'
-                name='email'
-                className={classes.textField}
-                variant='outlined'
-                label='Email'
-                placeholder='Enter Your Email'
-                fullWidth
-                value={email}
-                onChange={e => this.setState({ email: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={6}>
-              <TextField
-                id='password'
-                name='password'
-                label='Password'
-                className={classes.textField}
-                type='password'
-                variant='outlined'
-                fullWidth
-                value={password}
-                onChange={e => this.setState({ password: e.target.value })}
-              />
-            </Grid>
-            {/* last-row */}
-            <Grid item xs={12} md={12} lg={12}>
-              <TextField
-                id='pancard'
-                name='panno'
-                className={classes.textField}
-                variant='outlined'
-                label='Pancard No'
-                fullWidth
-                value={pancard}
-                onChange={e => this.setState({ pancard: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={12} lg={12}>
-              <TextField
-                id='description'
-                name='Description'
-                className={classes.textField}
-                variant='outlined'
-                label='Description'
-                fullWidth
-                value={description}
-                onChange={e => this.setState({ description: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={12} lg={12}>
-              <TextField
-                id='image'
-                // type='file'
-                name='Select Hotel Image'
-                className={classes.textField}
-                variant='outlined'
-                fullWidth
-                value={image}
-                onChange={e => this.setState({ image: e.target.value })}
-              />
-            </Grid>
-          </Grid>
-
-          <Button
-            onClick={this.handleSubmit}
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}
-            disabled={this.state.isChecking ? true : false}
-          >
-            {this.state.isChecking && <CircularProgress size={20} />}hotel
-            ragistration
-          </Button>
+                variant='contained'
+                color='primary'
+                className={classes.submit}
+                disabled={this.state.isChecking ? true : false}
+              >
+                {this.state.isChecking && <CircularProgress size={20} />}
+                Menegar-Signup
+              </Button>
+            </form>
+          </div>
         </Container>
+        <Footer />
       </div>
     );
   }

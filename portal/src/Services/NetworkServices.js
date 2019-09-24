@@ -1,6 +1,8 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ApplicationError, LogServices, AuthServices } from 'Services';
-
+import Config from 'Config';
+import expressFirebase from 'express-firebase';
+expressFirebase.connect(Config.FirebaseConfig);
 const logger = LogServices.getInstance('Service:Network');
 
 const MESSAGES = {
@@ -136,6 +138,11 @@ class NetworkService {
     } catch (error) {
       this.handleError(error);
     }
+  }
+
+  async uploadFile(imageName, imageSource) {
+    const imageUrl = await expressFirebase.uploadFile(imageName, imageSource);
+    return imageUrl;
   }
 }
 

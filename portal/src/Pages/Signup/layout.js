@@ -33,7 +33,7 @@ class Layout extends Component {
       username,
       password
     });
-    if (!response.success) {
+    if (!response.data.success) {
       const message = response.data.data.message;
       this.setState({
         message: message[0],
@@ -41,11 +41,7 @@ class Layout extends Component {
         variant: 'error'
       });
     } else {
-      this.setState({
-        isOpen: true,
-        message: 'Successfully sign up',
-        variant: 'success'
-      });
+      this.props.history.push('/');
     }
     this.setState({
       username: '',
@@ -54,8 +50,6 @@ class Layout extends Component {
       lastname: '',
       isChecking: false
     });
-
-    this.props.history.push('/');
   };
 
   render() {
@@ -63,7 +57,7 @@ class Layout extends Component {
     const { firstname, lastname, username, password } = this.state;
     return (
       <div className={classes.container}>
-        <Header />
+        <Header title='Signup' />
         <Snackbar
           errorMessage={this.state.message}
           isOpen={this.state.isOpen}

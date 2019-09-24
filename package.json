@@ -9,5 +9,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express-firebase": "^1.1.1"
+  }
 }

@@ -13,17 +13,51 @@ import {
   CardMedia,
   Card
 } from '@material-ui/core';
+
 import style from './style';
 import { Header, Footer } from 'Components';
-
-import { AuthServices } from 'Services';
-
-const cards = [1, 2, 3];
+import { HotelServices, AuthServices } from 'Services';
 
 class Layout extends Component {
   handleLogout = () => {
     AuthServices.logout();
     this.props.history.push('/login');
+  };
+  handleLogin = () => {
+    this.props.history.push('/login');
+  };
+
+  handleSignup = () => {
+    this.props.history.push('/signup');
+  };
+  state = {
+    hotels: []
+  };
+
+  async componentDidMount() {
+    const response = await HotelServices.getHotels();
+    if (response.success) {
+      this.setState({ hotels: response.data.hotels });
+    }
+  }
+  searchHotel = async e => {
+    const search = e.target.value;
+    let response;
+    if (search) {
+      response = await HotelServices.searchHotel(search);
+      if (response.success) {
+        this.setState({ hotels: response.data.hotels });
+      }
+    } else {
+      response = await HotelServices.getHotels();
+      if (response.success) {
+        this.setState({ hotels: response.data.hotels });
+      }
+    }
+  };
+
+  handleNavigation = id => {
+    this.props.history.push(`/room/${id}`);
   };
   render() {
     const { classes } = this.props;
@@ -51,8 +85,7 @@ class Layout extends Component {
             {!AuthServices.isAuthenticated() && (
               <div>
                 <Button
-                  href='/login'
-                  onClick='/login'
+                  onClick={this.handleLogin}
                   variant='contained'
                   color='secondary'
                   className={classes.button}
@@ -60,7 +93,7 @@ class Layout extends Component {
                   Login
                 </Button>
                 <Button
-                  href='/signup'
+                  onClick={this.handleSignup}
                   variant='contained'
                   color='secondary'
                   className={classes.button}
@@ -79,6 +112,7 @@ class Layout extends Component {
               variant='outlined'
               placeholder='Search Your Hotel'
               fullWidth
+              onChange={this.searchHotel}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position='start' style={{ color: '#F50057' }}>
@@ -91,38 +125,34 @@ class Layout extends Component {
         </div>
         <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image='https://source.unsplash.com/random'
-                    title='Hotel'
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      Hotel Name
-                    </Typography>
-                    <Typography style={{ paddingTop: 10 }}>
-                      ⭐️⭐️️⭐️
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button
-                      variant='contained'
-                      color='secondary'
-                      className={classes.button}
-                    >
-                      BOOK NOW{' '}
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
+            {this.state.hotels.length === 0 && <div>No Hotels Found</div>}
+            {this.state.hotels.length > 0 &&
+              this.state.hotels.map((hotel, index) => (
+                <Grid item key={index} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={hotel.image}
+                      title='Hotel'
+                    />
+                    <CardContent className={classes.cardContent}>
+                      <Typography variant='h5'>{hotel.hotelName}</Typography>
+                      <Typography gutterBottom>{hotel.address}</Typography>
+                      <Typography gutterBottom>{hotel.city}</Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        variant='contained'
+                        color='secondary'
+                        className={classes.button}
+                        onClick={() => this.handleNavigation(hotel._id)}
+                      >
+                        BOOK NOW
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
         </Container>
         <Footer />

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-
 import { AuthServices } from 'Services';
+import { AccountCircle } from '@material-ui/icons';
+import LockIcon from '@material-ui/icons/Lock';
 
 import {
   withStyles,
+  InputAdornment,
   TextField,
   Button,
   Container,
@@ -51,7 +53,7 @@ class Layout extends Component {
     const { username, password } = this.state;
     return (
       <div className={classes.container}>
-        <Header />
+        <Header title='Login' />
         <Snackbar
           errorMessage={this.state.message}
           isOpen={this.state.isOpen}
@@ -73,6 +75,16 @@ class Layout extends Component {
                     id='username'
                     placeholder='Email'
                     name='email'
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment
+                          position='start'
+                          style={{ color: '#1e90ff' }}
+                        >
+                          <AccountCircle />
+                        </InputAdornment>
+                      )
+                    }}
                     value={username}
                     onChange={e => this.setState({ username: e.target.value })}
                   />
@@ -87,6 +99,16 @@ class Layout extends Component {
                     type='password'
                     id='password'
                     autoComplete='current-password'
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment
+                          position='start'
+                          style={{ color: '#1e90ff' }}
+                        >
+                          <LockIcon />
+                        </InputAdornment>
+                      )
+                    }}
                     value={password}
                     onChange={e => this.setState({ password: e.target.value })}
                   />
