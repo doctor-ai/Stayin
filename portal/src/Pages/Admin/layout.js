@@ -10,8 +10,21 @@ import {
   Container
 } from '@material-ui/core';
 import { Header, Footer } from 'Components';
+import { HotelServices } from 'Services';
+
 import style from './style';
 class Layout extends React.Component {
+  state = {
+    hotels: []
+  };
+
+  async componentDidMount() {
+    const response = await HotelServices.getHotels();
+    if (response.success) {
+      this.setState({ hotels: response.data.hotels });
+    }
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -25,7 +38,17 @@ class Layout extends React.Component {
                 variant='contained'
                 color='secondary'
                 onClick={() => {
-                  this.props.history.push('/admin/addhotel');
+                  this.props.history.push('/');
+                }}
+                className={classes.button}
+              >
+                BACK
+              </Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={() => {
+                  this.props.history.push('/addhotel');
                 }}
                 className={classes.button}
               >
@@ -38,15 +61,17 @@ class Layout extends React.Component {
               <TableRow>
                 <TableCell>Hotel Name</TableCell>
                 <TableCell style={{ width: '20%' }}>Mobile No</TableCell>
-                <TableCell>Category</TableCell>
+                <TableCell>City</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow className={classes.listContainer}>
-                <TableCell>Night Queen</TableCell>
-                <TableCell>9106962809</TableCell>
-                <TableCell>Deluxe</TableCell>
-              </TableRow>
+              {this.state.hotels.map((hotel, index) => (
+                <TableRow key={index} className={classes.listContainer}>
+                  <TableCell>{hotel.hotelName}</TableCell>
+                  <TableCell>{hotel.mobile}</TableCell>
+                  <TableCell>{hotel.city}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </div>

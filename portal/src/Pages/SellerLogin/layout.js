@@ -27,7 +27,7 @@ class Layout extends Component {
   onClickLogin = async () => {
     this.setState({ isChecking: true });
     const { username, password } = this.state;
-    const response = await AuthServices.Managerlogin(username, password);
+    const response = await AuthServices.managerlogin(username, password);
     if (!response.success) {
       const message = response.data.message;
       console.log(message);
@@ -37,7 +37,7 @@ class Layout extends Component {
         variant: 'error'
       });
     } else {
-      this.props.history.push('/addhotel');
+      this.props.history.push('/admin');
     }
     this.setState({
       username: '',
@@ -122,7 +122,8 @@ class Layout extends Component {
                 className={classes.buttonStyle}
                 disabled={this.state.isChecking ? true : false}
               >
-                {this.state.isChecking && <CircularProgress size={20} />}ManagerLogin
+                {this.state.isChecking && <CircularProgress size={20} />}
+                ManagerLogin
               </Button>
             </form>
           </div>

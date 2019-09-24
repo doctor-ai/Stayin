@@ -173,19 +173,19 @@ const managersignup = async (req, res, next) => {
   if (!name) {
     message.push('name is required');
   }
-  if (!address) {
-    message.push('address is required');
-  }
   if (!mobile) {
     message.push('mobile is required');
   }
+  if (!address) {
+    message.push('address is required');
+  }
   if (!username) {
-    message.push('Username is required');
+    message.push('Email is required');
   }
   if (!password) {
     message.push('Password is required');
   }
-  if (!name || !address || !mobile || !username || !password) {
+  if (!name || !mobile || !address || !username || !password) {
     res.json({
       code: 401,
       data: {

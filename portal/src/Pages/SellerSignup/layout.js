@@ -43,7 +43,7 @@ class Layout extends Component {
         variant: 'error'
       });
     } else {
-      this.props.history.push('/addhotel');
+      this.props.history.push('/admin');
     }
     this.setState({
       username: '',
@@ -105,7 +105,7 @@ class Layout extends Component {
                     required
                     fullWidth
                     id='address'
-                    placeholder='Email'
+                    placeholder='address'
                     name='email'
                     // autoComplete='email'
                     value={address}
