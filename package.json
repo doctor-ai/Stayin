@@ -2,6 +2,15 @@
   "name": "stayin",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x",
+    "yarn": "1.x"
+  },
+  "cacheDirectories": [
+    "backend/node_modules",
+    "portal/node_modules"
+  ],
   "scripts": {
     "start:portal": "cd portal && npm start && cd ..",
     "install": "cd portal && npm install && cd .. && cd backend && npm install && cd ..",
