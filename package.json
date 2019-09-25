@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:portal": "cd ./portal && npm start && cd ..",
-    "install": "cd ./portal && npm install && cd .. && cd ./backend && npm install && cd ..",
-    "start:backend": "cd ./backend && npm start && cd .."
+    "start:portal": "cd portal && npm start && cd ..",
+    "install": "cd portal && npm install && cd .. && cd backend && npm install && cd ..",
+    "start:backend": "cd backend && npm start && cd ..",
+    "start": "npm run start:backend",
+    "build:portal": "cd portal && yarn build && cd --",
+    "build": "npm run build:portal && cd --"
   },
   "author": "",
   "license": "ISC",
