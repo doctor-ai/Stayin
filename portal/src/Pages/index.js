@@ -10,6 +10,7 @@ import HotelRegistration from 'Pages/HotelRegistration';
 import HotelRooms from 'Pages/HotelRoom';
 import Admin from 'Pages/Admin';
 
+
 class Root extends React.Component {
   render() {
     return (

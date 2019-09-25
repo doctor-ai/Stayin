@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import style from './style';
 import { Header, Snackbar } from 'Components';
-import axios from 'axios';
-import Config from 'Config';
-
 import {
   withStyles,
   Container,
@@ -12,6 +9,8 @@ import {
   Button,
   CircularProgress
 } from '@material-ui/core';
+import {AuthServices} from 'Services';
+
 
 class Layout extends Component {
   state = {
@@ -27,14 +26,10 @@ class Layout extends Component {
   onClickSignup = async () => {
     this.setState({ isChecking: true });
     const { firstname, lastname, username, password } = this.state;
-    const response = await axios.post(`${Config.SERVER_URL}/signup`, {
-      firstname,
-      lastname,
-      username,
-      password
-    });
-    if (!response.data.success) {
-      const message = response.data.data.message;
+    const response = await AuthServices.signup(firstname,lastname,username, password);
+    if (!response.success) {
+      const message = response.data.message;
+      console.log(message);
       this.setState({
         message: message[0],
         isOpen: true,

@@ -125,7 +125,7 @@ class Layout extends Component {
         </div>
         <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={4}>
-            {this.state.hotels.length === 0 && <div className={classes.notfound}>No Match Found 😠</div>}
+            {this.state.hotels.length === 0 && <div className={classes.notfound}>Opps !!  Hotel Not Found... </div>}
             {this.state.hotels.length > 0 &&
               this.state.hotels.map((hotel, index) => (
                 <Grid item key={index} xs={12} sm={6} md={4}>
