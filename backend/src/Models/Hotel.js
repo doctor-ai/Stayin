@@ -15,8 +15,7 @@ const hotelSchema = new Schema(
     },
     city: {
       type: mongoose.Schema.Types.String,
-      require: true,
-      unique: true
+      require: true
     },
     pincode: {
       type: mongoose.Schema.Types.Number,
