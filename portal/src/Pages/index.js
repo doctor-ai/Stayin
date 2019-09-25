@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import Singup from 'Pages/Signup';
+<<<<<<< HEAD
 import ManagerLogin from 'Pages/ManagerLogin';
 import ManagerSignup from 'Pages/ManagerSignup';
 import HotelRegistration from 'Pages/HotelRegistration';
 import HotelRooms from 'Pages/HotelRoom';
 import Admin from 'Pages/Admin';
 
+import SellerLogin from 'Pages/SellerLogin';
+import HotelRegistration from 'Pages/HotelRegistration';
 
 class Root extends React.Component {
   render() {
@@ -24,6 +27,8 @@ class Root extends React.Component {
           <Route exact path='/addhotel' component={HotelRegistration} />
           <Route exact path='/room/:id' component={HotelRooms} />
           <Route exact path='/admin' component={Admin} />
+          <Route exact path='/admin/login' component={SellerLogin} />
+          <Route exact path='/admin/addhotel' component={HotelRegistration} />
         </Switch>
       </Router>
     );

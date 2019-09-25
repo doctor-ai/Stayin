@@ -1,11 +1,16 @@
 const style = theme => ({
-  container: {
-    marginTop: theme.spacing() *2,
+    container: {
+      marginTop:theme.spacing(5)
+    },
+    HeaderTypo:{
+      fontSize:theme.spacing(3),
+      margin:theme.spacing(6),
+      borderBottom:"2px  solid #1e90ff"
+    },
+   button:{
+     marginTop:theme.spacing(3)
+   }
 
-  },
-  button: {
-    marginTop: theme.spacing() * 4,
-  }
-});
+  });
 
-export default style;
+  export default style;
