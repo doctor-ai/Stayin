@@ -24,7 +24,7 @@ const server = (async () => {
     });
     debug('Connected to database');
     app.use(cors());
-    app.use(express.static(path.join(__dirname, '../../portal/build/')));
+    app.use(expr/ess.static(path.join(__dirname, '../../portal/build/')));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use('/api/1.0', router);
