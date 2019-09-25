@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { AuthServices } from 'Services';
-import { AccountCircle } from '@material-ui/icons';
-import LockIcon from '@material-ui/icons/Lock';
+import style from './style';
+import { Header, Snackbar } from 'Components';
+import axios from 'axios';
+import Config from 'Config';
 
 import {
   withStyles,
-  InputAdornment,
-  TextField,
-  Button,
   Container,
   Grid,
+  TextField,
+  Button,
   CircularProgress
 } from '@material-ui/core';
-import style from './style';
-import { Header, Footer, Snackbar } from 'Components';
 
 class Layout extends Component {
   state = {
+    name: '',
+    address: '',
+    mobile: '',
     username: '',
     password: '',
     isOpen: false,
@@ -24,13 +25,18 @@ class Layout extends Component {
     variant: 'error',
     isChecking: false
   };
-  onClickLogin = async () => {
+  onClickSignup = async () => {
     this.setState({ isChecking: true });
-    const { username, password } = this.state;
-    const response = await AuthServices.managerlogin(username, password);
-    if (!response.success) {
-      const message = response.data.message;
-      console.log(message);
+    const { name, address, mobile, username, password } = this.state;
+    const response = await axios.post(`${Config.SERVER_URL}/managersignup`, {
+      name,
+      address,
+      mobile,
+      username,
+      password
+    });
+    if (!response.data.success) {
+      const message = response.data.data.message;
       this.setState({
         message: message[0],
         isOpen: true,
@@ -42,18 +48,19 @@ class Layout extends Component {
     this.setState({
       username: '',
       password: '',
-      firstname: '',
-      lastname: '',
+      name: '',
+      address: '',
+      mobile: '',
       isChecking: false
     });
   };
 
   render() {
     const { classes } = this.props;
-    const { username, password } = this.state;
+    const { name, address, mobile, username, password } = this.state;
     return (
       <div className={classes.container}>
-        <Header title='Login' />
+        <Header title='Manager Signup' />
         <Snackbar
           errorMessage={this.state.message}
           isOpen={this.state.isOpen}
@@ -65,26 +72,54 @@ class Layout extends Component {
             <img src='/images/boy.svg' alt='svgicon' height='150' width='150' />
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                   <TextField
-                    AccountCircle
-                    autoFocus
+                    autoComplete='fname'
+                    name='name'
                     variant='outlined'
                     required
                     fullWidth
-                    id='username'
+                    placeholder='Enter name'
+                    id='name'
+                    autoFocus
+                    value={name}
+                    onChange={e => this.setState({ name: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='mobile'
+                    placeholder='Enter mobile No'
+                    name='lastName'
+                    autoComplete='lname'
+                    value={mobile}
+                    onChange={e => this.setState({ mobile: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='address'
+                    placeholder='address'
+                    name='email'
+
+                    value={address}
+                    onChange={e => this.setState({ address: e.target.value })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant='outlined'
+                    required
+                    fullWidth
+                    id='email'
                     placeholder='Email'
                     name='email'
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment
-                          position='start'
-                          style={{ color: '#1e90ff' }}
-                        >
-                          <AccountCircle />
-                        </InputAdornment>
-                      )
-                    }}
                     value={username}
                     onChange={e => this.setState({ username: e.target.value })}
                   />
@@ -99,16 +134,6 @@ class Layout extends Component {
                     type='password'
                     id='password'
                     autoComplete='current-password'
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment
-                          position='start'
-                          style={{ color: '#1e90ff' }}
-                        >
-                          <LockIcon />
-                        </InputAdornment>
-                      )
-                    }}
                     value={password}
                     onChange={e => this.setState({ password: e.target.value })}
                   />
@@ -116,19 +141,20 @@ class Layout extends Component {
               </Grid>
 
               <Button
-                onClick={this.onClickLogin}
+                onClick={this.onClickSignup}
+                fullWidth
                 variant='contained'
                 color='primary'
-                className={classes.buttonStyle}
+                className={classes.submit}
                 disabled={this.state.isChecking ? true : false}
               >
                 {this.state.isChecking && <CircularProgress size={20} />}
-                ManagerLogin
+                 Signup
               </Button>
             </form>
           </div>
         </Container>
-        <Footer />
+
       </div>
     );
   }

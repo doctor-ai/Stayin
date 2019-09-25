@@ -50,9 +50,15 @@ const style = theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing() * 3
   },
+  button:{
+    marginTop:theme.spacing() * 2,
+   },
   submit: {
     margin: theme.spacing(3, 0, 2)
-  }
+  },
+
+
+
 });
 
 export default style;

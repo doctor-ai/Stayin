@@ -6,6 +6,9 @@ const style = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: theme.spacing() * 2
+  },
+  button:{
+    margin:theme.spacing(0,1),
   }
 });
 export default style;

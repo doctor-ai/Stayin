@@ -25,7 +25,7 @@ const style = theme => ({
 
     },
     topcontent:{
-      paddingBottom:theme.spacing() * 2,
+      paddingBottom:theme.spacing() * 1,
       borderBottom:"1px solid grey",
       display:"flex",
       justifyContent:"space-Between"

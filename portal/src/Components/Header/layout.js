@@ -7,9 +7,9 @@ class Layout extends Component {
   render() {
     const { classes, title } = this.props;
     return (
-      <AppBar position='static'>
+      <AppBar position='static' className={classes.AppBar}>
         <Toolbar className={classes.navigationBar}>
-          <Typography variant='h6'>{title || 'STAYIN'}</Typography>
+          <Typography variant='h6' >{title || 'STAYIN'}</Typography>
         </Toolbar>
       </AppBar>
     );

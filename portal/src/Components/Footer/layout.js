@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import { Typography, Toolbar, AppBar, withStyles } from '@material-ui/core';
-import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
-
 import style from './style';
 
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 class Layout extends Component {
   render() {
@@ -29,11 +16,10 @@ class Layout extends Component {
               variant='subtitle1'
               align='center'
               color='textSecondary'
-              component='p'
+              className={classes.footerTypo}
             >
-              Something here to give the footer a purpose!
+              Made With 💗
             </Typography>
-            <Copyright />
           </Container>
         </Toolbar>
       </AppBar>

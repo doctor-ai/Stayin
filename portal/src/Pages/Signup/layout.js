@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './style';
-import { Header, Footer, Snackbar } from 'Components';
+import { Header, Snackbar } from 'Components';
 import axios from 'axios';
 import Config from 'Config';
 
@@ -138,7 +138,7 @@ class Layout extends Component {
             </form>
           </div>
         </Container>
-        <Footer />
+
       </div>
     );
   }

@@ -8,7 +8,7 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import style from './style';
-import { Header, Snackbar, Footer } from 'Components';
+import { Header, Snackbar } from 'Components';
 import { HotelServices } from 'Services';
 
 class Layout extends Component {
@@ -114,7 +114,7 @@ class Layout extends Component {
           handleClose={() => this.setState({ isOpen: false })}
           variant={this.state.variant}
         />
-        <Container maxWidth='md'>
+        <Container maxWidth='md' style={{height:"95vh"}}>
           <Grid container spacing={3} className={classes.container}>
             <Grid item xs={12} md={12} lg={12}>
               <TextField
@@ -142,7 +142,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            {/* Second Row */}
+
             <Grid item xs={12} md={6} lg={6}>
               <TextField
                 name='city'
@@ -155,7 +155,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sm={12}>
               <TextField
                 name='pincode'
                 id='pincode'
@@ -167,8 +167,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            {/* Third Row */}
-            <Grid item xs={12} md={4} lg={4}>
+            <Grid item xs={12} md={6} lg={6} sm={12}>
               <TextField
                 id='mobile'
                 name='mobileno'
@@ -180,7 +179,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            <Grid item xs={12} md={4} lg={4}>
+            <Grid item xs={12} md={6} lg={6} sm={12}>
               <TextField
                 id='state'
                 name='state'
@@ -192,7 +191,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            <Grid item xs={12} md={4} lg={4}>
+            <Grid item xs={12} md={6} lg={6} sm={12}>
               <TextField
                 id='star'
                 name='star'
@@ -204,7 +203,7 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            <Grid item xs={12} md={6} lg={6}>
+            <Grid item xs={12} md={12} lg={12} sm={12}>
               <TextField
                 id='email'
                 name='email'
@@ -217,20 +216,8 @@ class Layout extends Component {
                 onChange={this.handleInput}
               />
             </Grid>
-            <Grid item xs={12} md={6} lg={6}>
-              <TextField
-                id='password'
-                name='password'
-                label='Password'
-                className={classes.textField}
-                type='password'
-                variant='outlined'
-                fullWidth
-                value={this.state.password}
-                onChange={this.handleInput}
-              />
-            </Grid>
-            {/* last-row */}
+
+
             <Grid item xs={12} md={12} lg={12}>
               <TextField
                 id='pancard'
@@ -271,16 +258,16 @@ class Layout extends Component {
           <Button
             onClick={this.handleSubmit}
             fullWidth
+            style = {{marginTop:"1rem"}}
             variant='contained'
             color='primary'
             className={classes.submit}
-            disabled={this.state.isChecking ? true : false}
-          >
+            disabled={this.state.isChecking ? true : false} >
             {this.state.isChecking && <CircularProgress size={20} />}
-            hotelragistration
+            Register Hotel
           </Button>
+          <br />
         </Container>
-        <Footer />
       </div>
     );
   }
