@@ -9,9 +9,7 @@ import ManagerSignup from 'Pages/ManagerSignup';
 import HotelRegistration from 'Pages/HotelRegistration';
 import HotelRooms from 'Pages/HotelRoom';
 import Admin from 'Pages/Admin';
-
 import SellerLogin from 'Pages/SellerLogin';
-import HotelRegistration from 'Pages/HotelRegistration';
 
 class Root extends React.Component {
   render() {

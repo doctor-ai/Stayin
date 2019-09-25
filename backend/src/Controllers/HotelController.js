@@ -10,7 +10,6 @@ const addHotel = async (req, res, next) => {
     mobile,
     star,
     email,
-    password,
     pancard,
     description,
     image
@@ -40,9 +39,6 @@ const addHotel = async (req, res, next) => {
   if (!email) {
     message.push('email is required');
   }
-  if (!password) {
-    message.push('Password is required');
-  }
   if (!pancard) {
     message.push('pancard is required');
   }
@@ -55,7 +51,6 @@ const addHotel = async (req, res, next) => {
 
   if (
     !email ||
-    !password ||
     !hotelName ||
     !address ||
     !city ||
@@ -64,7 +59,6 @@ const addHotel = async (req, res, next) => {
     !state ||
     !star ||
     !email ||
-    !password ||
     !pancard ||
     !description ||
     !image
@@ -73,17 +67,6 @@ const addHotel = async (req, res, next) => {
       code: 401,
       data: {
         message
-      },
-      success: false
-    });
-    return;
-  }
-  let hotel = await Hotel.findOne({ email });
-  if (hotel) {
-    res.json({
-      code: 200,
-      data: {
-        message: ['hotel is already exists']
       },
       success: false
     });
@@ -98,7 +81,6 @@ const addHotel = async (req, res, next) => {
     state,
     star,
     email,
-    password,
     pancard,
     description,
     image
