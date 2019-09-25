@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from 'Pages/Home';
 import Login from 'Pages/Login';
 import Singup from 'Pages/Signup';
-<<<<<<< HEAD
 import ManagerLogin from 'Pages/ManagerLogin';
 import ManagerSignup from 'Pages/ManagerSignup';
 import HotelRegistration from 'Pages/HotelRegistration';
