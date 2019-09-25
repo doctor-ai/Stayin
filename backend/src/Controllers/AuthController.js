@@ -111,6 +111,7 @@ const signup = async (req, res, next) => {
   if (!firstname) {
     message.push('firstname is required');
   }
+
   if (!lastname) {
     message.push('lastname is required');
   }
